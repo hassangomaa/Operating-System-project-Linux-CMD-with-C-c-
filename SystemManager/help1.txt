@@ -1,0 +1,34 @@
+Help page for: the System Manager 
+***
+****************************
+*  Command && Description  *
+****************************
+sudo adduser username
+
+Adds a user
+
+sudo passwd -l 'username'
+
+Disable a user
+
+sudo userdel -r 'username'
+
+Delete a user
+
+sudo usermod -a -G GROUPNAME USERNAME
+
+Add user a to a usergroup
+
+sudo deluser USER GROUPNAME
+
+Remove user from a user group
+
+finger
+
+Gives information on all logged in user
+
+finger username
+
+Gives information of a particular user
+
+

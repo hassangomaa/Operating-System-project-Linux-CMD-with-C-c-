@@ -1,0 +1,107 @@
+**************************************************************
+# 								#
+#  Welcome in Main Manual page for  the usermanagersystem:	#
+#								#
+***************************************************************
+
+#Name
+useradd - create a new user or update default new user information
+
+ Description
+ 
+When invoked without the -D option, the useradd command creates a new user account using the values specified on the command line plus the default values from the system. Depending on command line options, the useradd command will update system files and may also create the new user's home directory and copy initial files.
+#Name
+groupadd - create a new group
+
+ Description
+The groupadd command creates a new group account using the values specified on the command line plus the default values from the system. The new group will be entered into the system files as needed.
+
+#Name
+ groupdel - delete a group
+
+Description
+The groupdel command modifies the system account files, deleting all entries that refer to group. The named group must exist.
+ 
+
+**To view a user account aging information, use the -l flag as shwon.**
+# chage -l ravi
+View User Password Aging Information
+View User Password Aging Information
+To set the date or number of days (since January 1, 1970) when the password was last changed, use the -d flag as follows.
+
+# chage -d 2018-02-11 ravi
+Next, you can also set the date or number of days (since January 1, 1970) on which the user’s account will no longer be accessible by using the -E switch as shown in the following command.
+
+In this case, once a user’s account is locked, he/she is required to contact the system administrator before being able to use the system again.
+
+# chage -E 2018-02-16 ravi
+Then, the -W option allows you to set the number of days of warning before a password change is required. Considering the command below, the user ravi will be warned 10 days prior to his password expiring.
+
+# chage -W 10 ravi
+In addition, you can set the number of days of inactivity after a password has expired before the account is locked. This example means that after user ravi’s password expires, his account will be inactive for 2 days before it is locked.
+
+When the account becomes inactive, he must contact the system administrator before being able to use the system again.
+
+# chage -I 2 ravi
+For more information, refer to the chage man page.
+
+# Change a User’s Primary Group
+To change a user primary group, use the usermod 
+command followed by the -g option:
+
+sudo usermod -g groupname username
+*****
+
+# Add an Existing User to a Group
+To add an existing user to a secondary group, use the usermod -a -G 
+command followed the name of the group and the user:
+
+sudo usermod -a -G groupname username
+**
+
+#Add an Existing User to Multiple Groups in One Command
+If you want to add an existing user to multiple secondary groups in one command, 
+use the usermod command followed by the -G option name of the group separated by , (commas):
+
+sudo usermod -a -G group1,group2 username
+***
+#change user login name 
+
+sudo usermod -l newName oldName
+
+
+
+# Remove a User From a Group
+To remove a user from a group, use the gpasswd command wit the -d option.
+
+In the following example, 
+we are removing the user username from the group groupname:
+ 
+ sudo gpasswd -d username groupname
+***
+
+
+#  Create a Group 
+To create a new group , use the groupadd command followed by the group name:
+
+sudo groupadd groupname
+****
+ 
+# Delete a Group
+To delete an existing group, 
+use the groupdel command followed by the group name:
+
+sudo groupdel groupname
+****
+
+#Create a New User and Assign Groups in One Command
+The following useradd command creates a new user named nathan with primary group users and secondary groups wheel and developers.
+
+sudo useradd -g users -G wheel,developers nathan
+****
+#Display User Groups
+To display complete user information, 
+including all the groups of which a user is a member of,
+use the id command followed by the username:
+
+id username
